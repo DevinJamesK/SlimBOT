@@ -35,7 +35,7 @@ channel = "#CHANGE THIS TO YOUR CHANNEL"  #<------------------------------------
 nick = 'slimBOT'  #<-------------------------------------------------YOU CAN CHANGE ME IF YOU WANT
 
 #You should never have to change the port for a basic setup
-#port 6667 isa default port for IRC
+#port 6667 is the default port for IRC
 port = 6667
 
 #Setting up the socket below, this too you should not ever have to change
