@@ -34,8 +34,8 @@ count = randint(0,5)
 ##################################################################################################
 
 #Change these to whatever suits your needs
-network = 'irc.installgentoo.com'  #<---------------------------------------------CHANGE ME!
-channel = "#test"  #<--------------------------------------------CHANGE ME!
+network = 'irc.installgentoo.com'  #<---------------------------------------------------CHANGE ME!
+channel = "#test"  #<-------------------------------------------------------------------CHANGE ME!
 nick = 'slimBOT'  #<-------------------------------------------------YOU CAN CHANGE ME IF YOU WANT
 
 #You should never have to change the port for a basic setup
@@ -141,7 +141,7 @@ while True:
         #next chamber
         else:
             count += 1
-
+            
         ## END OF russianRoulette ##
 
 
