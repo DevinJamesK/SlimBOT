@@ -128,7 +128,7 @@ while True:
         #If the gun has "been shot" then we put a new bullet in the chamber and spin it.
         if beenShot:
             irc.send('PRIVMSG ' + channel + ' *Reloading*\r\n')
-            count = randint(0, 5);
+            count = randint(0, 5)
             beenShot = False
 
         #Prints to the IRC chat
