@@ -23,15 +23,19 @@
 
 #imports
 import socket
-import random
+from random import *
+
+#Globals Variables (your methods may need them to use some, if so put them below!)
+beenShot = False
+count = randint(0,5)
 
 ##################################################################################################
 ###---------------------THE BASICS (network, channel, nick, and socket)------------------------###
 ##################################################################################################
 
 #Change these to whatever suits your needs
-network = 'CHANGE THIS TO YOUR NETWORK'  #<---------------------------------------------CHANGE ME!
-channel = "#CHANGE THIS TO YOUR CHANNEL"  #<--------------------------------------------CHANGE ME!
+network = 'irc.installgentoo.com'  #<---------------------------------------------CHANGE ME!
+channel = "#test"  #<--------------------------------------------CHANGE ME!
 nick = 'slimBOT'  #<-------------------------------------------------YOU CAN CHANGE ME IF YOU WANT
 
 #You should never have to change the port for a basic setup
@@ -90,17 +94,20 @@ while True:
     ###################################################################################################
 
     if data.find('!slaps') != -1:
-        irc.send('PRIVMSG ' + channel + ' :Come on man, why you got to be like that?')
+        irc.send('PRIVMSG ' + channel + ' :Come on man, why you got to be like that?\r\n')
 
     if data.find('!8b' or '!8ball') != -1:
         eightBall()
+
+    if data.find('!rr' or '!russianRoulette') != -1:
+        russianRoulette()
 
     ##################################################################################################
     ###---------------------------------METHODS / FUNCTIONS BELOW----------------------------------###
     ##################################################################################################
 
     def eightBall():
-        ball_responses = ["Yes.", "Reply hazy, try again.", "Without a doubt." "My sources say no.",
+        ball_responses = ["Yes.", "Reply hazy, try again.", "Without a doubt.", "My sources say no.",
                           "As I see it, yes.", "You may rely on it.", "Concentrate and ask again.",
                           "Outlook not so good.", "It is decidedly so.", "Better not tell you now.",
                           "Very doubtful.", "Yes, definitely.", "It is certain.", "Cannot predict now.",
@@ -109,3 +116,37 @@ while True:
 
         #Prints to the IRC chat
         irc.send('PRIVMSG ' + channel + ' ' + random.choice(ball_responses) + '\r\n')
+
+        ## END OF eightBall ##
+
+    def russianRoulette():
+        global count
+        global beenShot
+        # Indexs of list... 0           1          2          3          4         5
+        gun_responces = ['*Click*', '*Click*', '*Click*', '*Click*', '*Click*', '*BANG*']
+
+        #If the gun has "been shot" then we put a new bullet in the chamber and spin it.
+        if beenShot:
+            irc.send('PRIVMSG ' + channel + ' *Reloading*\r\n')
+            count = randint(0, 5);
+            beenShot = False
+
+        #Prints to the IRC chat
+        irc.send('PRIVMSG ' + channel + ' ' + gun_responces[count] + '\r\n')
+
+        #If we printed the list at index 5 then we printed the BANG and the gun has been shot
+        if count == 5:
+            beenShot = True
+        #If the gun has not been shot then we pass it on to another player the advance to the
+        #next chamber
+        else:
+            count += 1
+
+        ## END OF russianRoulette ##
+
+
+
+
+
+
+
