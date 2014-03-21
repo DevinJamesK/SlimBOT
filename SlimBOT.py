@@ -102,9 +102,20 @@ while True:
     if data.find('!rr' or '!russianRoulette') != -1:
         russianRoulette()
 
+    if data.find('!ask' or '!a') != -1:
+        ask()
+
+
     ##################################################################################################
     ###---------------------------------METHODS / FUNCTIONS BELOW----------------------------------###
     ##################################################################################################
+
+    def ask():
+        ask_responses = ["Yes", "No"]
+        #Prints to the IRC chat
+        irc.send('PRIVMSG ' + channel + ' ' + random.choice(ask_responses) + '\r\n')
+
+        ## END OF ask ##
 
     def eightBall():
         ball_responses = ["Yes.", "Reply hazy, try again.", "Without a doubt.", "My sources say no.",
@@ -143,6 +154,8 @@ while True:
             count += 1
             
         ## END OF russianRoulette ##
+
+
 
 
 
