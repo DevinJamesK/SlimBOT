@@ -96,15 +96,14 @@ while True:
     if data.find('!slaps') != -1:
         irc.send('PRIVMSG ' + channel + ' :Come on man, why you got to be like that?\r\n')
 
+    if data.find('!ask' or '!a') != -1:
+        ask()
+
     if data.find('!8b' or '!8ball') != -1:
         eightBall()
 
     if data.find('!rr' or '!russianRoulette') != -1:
         russianRoulette()
-
-    if data.find('!ask' or '!a') != -1:
-        ask()
-
 
     ##################################################################################################
     ###---------------------------------METHODS / FUNCTIONS BELOW----------------------------------###
@@ -154,8 +153,6 @@ while True:
             count += 1
             
         ## END OF russianRoulette ##
-
-
 
 
 
