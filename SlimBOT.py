@@ -27,16 +27,16 @@ from random import *
 
 #Globals Variables (your methods may need them to use some, if so put them below!)
 beenShot = False
-count = randint(0,5)
+count = randint(0, 5)
 
 ##################################################################################################
 ###---------------------THE BASICS (network, channel, nick, and socket)------------------------###
 ##################################################################################################
 
 #Change these to whatever suits your needs
-network = 'irc.installgentoo.com'  #<---------------------------------------------------CHANGE ME!
-channel = "#test"  #<-------------------------------------------------------------------CHANGE ME!
-nick = 'slimBOT'  #<-------------------------------------------------YOU CAN CHANGE ME IF YOU WANT
+network = 'irc.installgentoo.com'  # <--------------------------------------------------CHANGE ME!
+channel = "#testing"  # <---------------------------------------------------------------CHANGE ME!
+nick = 'slimBOT'  # <------------------------------------------------YOU CAN CHANGE ME IF YOU WANT
 
 #You should never have to change the port for a basic setup
 #port 6667 is the default port for IRC
@@ -64,7 +64,7 @@ while True:
     #HINT: The Buffer should be about as many characters are in the input string from the socket 
     # + some room for longer usernames + the longest command 
     #When in doubt, too long is better than too short
-    data = irc.recv(64)
+    data = irc.recv(128)
 
     #Prints all incoming data from the IRC to the console
     print data
@@ -89,22 +89,6 @@ while True:
         irc.send('PRIVMSG ' + channel + ' :All commands begin with ! and are as follows: '
                                         'hi, hello, slaps, and  8ball or 8b\r\n')
 
-    ###################################################################################################
-    ###-------------------------------COMMAND CHECKS & CALLS BELOW----------------------------------###
-    ###################################################################################################
-
-    if data.find('!slaps') != -1:
-        irc.send('PRIVMSG ' + channel + ' :Come on man, why you got to be like that?\r\n')
-
-    if data.find('!ask' or '!a') != -1:
-        ask()
-
-    if data.find('!8b' or '!8ball') != -1:
-        eightBall()
-
-    if data.find('!rr' or '!russianRoulette') != -1:
-        russianRoulette()
-
     ##################################################################################################
     ###---------------------------------METHODS / FUNCTIONS BELOW----------------------------------###
     ##################################################################################################
@@ -112,7 +96,7 @@ while True:
     def ask():
         ask_responses = ["Yes", "No"]
         #Prints to the IRC chat
-        irc.send('PRIVMSG ' + channel + ' ' + random.choice(ask_responses) + '\r\n')
+        irc.send('PRIVMSG ' + channel + ' ' + choice(ask_responses) + '\r\n')
 
         ## END OF ask ##
 
@@ -125,7 +109,7 @@ while True:
                           "Don\'t count on it."]
 
         #Prints to the IRC chat
-        irc.send('PRIVMSG ' + channel + ' ' + random.choice(ball_responses) + '\r\n')
+        irc.send('PRIVMSG ' + channel + ' ' + choice(ball_responses) + '\r\n')
 
         ## END OF eightBall ##
 
@@ -154,8 +138,21 @@ while True:
             
         ## END OF russianRoulette ##
 
+    ###################################################################################################
+    ###-------------------------------COMMAND CHECKS & CALLS BELOW----------------------------------###
+    ###################################################################################################
 
+    if data.find('!slaps') != -1:
+        irc.send('PRIVMSG ' + channel + ' :Come on man, why you got to be like that?\r\n')
 
+    if data.find('!ask' or '!a') != -1:
+        ask()
+
+    if data.find('!8b' or '!8ball') != -1:
+        eightBall()
+
+    if data.find('!rr' or '!russianRoulette') != -1:
+        russianRoulette()
 
 
 
