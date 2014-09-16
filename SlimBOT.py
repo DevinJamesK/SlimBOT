@@ -109,7 +109,7 @@ while True:
                           "Don\'t count on it."]
 
         #Prints to the IRC chat
-        irc.send('PRIVMSG ' + channel + ' ' + choice(ball_responses) + '\r\n')
+        irc.send('PRIVMSG ' + channel + ' :' + choice(ball_responses) + '\r\n')
 
         ## END OF eightBall ##
 
